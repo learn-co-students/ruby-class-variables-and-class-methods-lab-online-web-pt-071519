@@ -5,26 +5,19 @@ class Song
         @@count
       end 
       
-      # Control for duplicates when you code your 
-      # .genres class method, not when you add 
-      # genres to the original @@genres array.
       @@genres = []
       
-    # this should be deleted at some point
-    # def self.total_genre_entries
-    #   @@genres
-    # end
       
       def self.genres
         @@genres.uniq
       end
       
-      # this method is the one I found on stackexchange...
+      
       def self.genre_count
         @@genres.inject(Hash.new(0)) { |total, i| total[i] += 1 ;total}
       end 
       
-      # This is how the method is done on learn.co:
+      
       def self.genre_count
         genre_count = {}
         @@genres.each do |genre|
