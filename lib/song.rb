@@ -1,7 +1,6 @@
 class Song
 
-  ARTISTS = []
-  GENRES = []
+  @@artists = []
   @@genres = []
   @@count = 0
 
@@ -13,20 +12,28 @@ class Song
     @genre = genre
 
     @@count += 1
-    @@genres << self
-    ARTISTS << self
+    @@genres << genre
+    @@artists << artist
   end
 
   def self.count
     @@count
   end
 
-  def self.artist
-    ARTISTS.uniq
+  def self.artists
+    @@artists.uniq
   end
 
   def self.genres
-    genres.uniq
+    @@genres.uniq
+  end
+
+  def self.genre_count
+    @@genres.group_by{|x| x}.map{|k, v| [k, v.length]}.to_h
+  end
+
+  def self.artist_count
+    @@artists.group_by{|x| x}.map{|k, v| [k, v.length]}.to_h
   end
 
 end
