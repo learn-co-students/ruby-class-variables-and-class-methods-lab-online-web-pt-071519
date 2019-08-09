@@ -29,8 +29,16 @@ class Song
   end
 
   def self.genre_count
-    @@genres.group_by{|x| x}.map{|k, v| [k, v.length]}.to_h
-  end
+    genre_count = {}
+     @@genres.each do |genre|
+       if genre_count[genre]
+         genre_count[genre] += 1
+       else
+         genre_count[genre] = 1
+       end
+     end
+     genre_count
+   end
 
   def self.artist_count
     @@artists.group_by{|x| x}.map{|k, v| [k, v.length]}.to_h
